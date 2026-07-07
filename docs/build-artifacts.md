@@ -2,11 +2,11 @@
 
 ## Android Debug APK
 
-- Built at: 2026-07-07 19:56 Asia/Shanghai
+- Built at: 2026-07-07 20:18 Asia/Shanghai
 - Command: `flutter build apk --debug`
 - Path: `app/build/app/outputs/flutter-apk/app-debug.apk`
-- Size: 162 MB
-- SHA-256: `f30178ebd958de13456834e8e3ec4fba814648451011de9518f72bfc49f1b378`
+- Size: 162 MiB (`169562993` bytes)
+- SHA-256: `831ee1b08df132559916150a845a720d2d5d2c531ef8148a8aac347197bb1546`
 - Package name: `com.iawnix.foodhome`
 - App label: `FoodHome`
 - Version name: `0.1.0`
