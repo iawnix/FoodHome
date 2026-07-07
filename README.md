@@ -10,6 +10,8 @@ This repository starts the V0.0 slice from the product and technical plans:
 - Firebase rules, indexes, and TypeScript function contracts prepared for V0.1.
 - No Firebase project files, API keys, signing keys, or local secrets are stored.
 
+Current repository: <https://github.com/iawnix/FoodHome>
+
 ## Layout
 
 ```text
@@ -28,5 +30,18 @@ cd app && flutter analyze && flutter test
 cd ../functions && npm test
 ```
 
+Validated on 2026-07-07:
+
+- `flutter analyze`
+- `flutter test`
+- `flutter build web`
+- `npm test` in `functions/`
+
 The Flutter app currently uses in-memory demo state. Firebase write paths and AI
 provider keys are intentionally not configured in this repository.
+
+Android debug APK build still needs follow-up. The first Gradle run moved past
+wrapper download after switching to the cached Gradle 9.1.0 bin distribution,
+but Kotlin/Gradle compilation did not finish within the local run window.
+
+See `docs/roadmap.md` for the next implementation steps.
