@@ -34,14 +34,13 @@ Validated on 2026-07-07:
 
 - `flutter analyze`
 - `flutter test`
+- `flutter build apk --debug`
 - `flutter build web`
 - `npm test` in `functions/`
 
 The Flutter app currently uses in-memory demo state. Firebase write paths and AI
 provider keys are intentionally not configured in this repository.
 
-Android debug APK build still needs follow-up. The first Gradle run moved past
-wrapper download after switching to the cached Gradle 9.1.0 bin distribution,
-but Kotlin/Gradle compilation did not finish within the local run window.
-
-See `docs/roadmap.md` for the next implementation steps.
+The Android debug APK is a local build artifact and is not tracked in Git. See
+`docs/build-artifacts.md` for the latest local artifact metadata and
+`docs/roadmap.md` for the next implementation steps.

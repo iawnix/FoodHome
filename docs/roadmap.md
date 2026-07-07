@@ -14,15 +14,7 @@ V0.0 is implemented as a local Flutter prototype:
 
 ## Next Work
 
-### 1. Finish Android Build Verification
-
-- Re-run `flutter build apk --debug` with a longer build window.
-- If it still stalls, run Gradle with `--info --stacktrace` and inspect the
-  Kotlin daemon phase.
-- Keep `.gradle/`, app build outputs, signing keys, and local SDK paths out of
-  Git.
-
-### 2. Firebase V0.1 Core Loop
+### 1. Firebase V0.1 Core Loop
 
 - Create a Firebase project outside the repository.
 - Add environment-specific Firebase config locally only.
@@ -35,7 +27,7 @@ V0.0 is implemented as a local Flutter prototype:
   - `transitionOrderStatus`
 - Replace the Flutter in-memory controller with repository/data-source layers.
 
-### 3. Two-Device Sync Acceptance
+### 2. Two-Device Sync Acceptance
 
 - Two devices join the same household with a six-digit invite code.
 - New order appears on the kitchen device within three seconds.
@@ -43,7 +35,7 @@ V0.0 is implemented as a local Flutter prototype:
 - Illegal status transitions are rejected by Cloud Functions.
 - Direct Firestore writes for orders and events stay blocked by rules.
 
-### 4. Notifications
+### 3. Notifications
 
 - Add FCM token registration.
 - Add notification records for:
@@ -53,7 +45,7 @@ V0.0 is implemented as a local Flutter prototype:
   - `served`
 - Use fixed notification templates, not raw household notes.
 
-### 5. AI V0.2
+### 4. AI V0.2
 
 - Add Secret Manager-backed provider configuration.
 - Implement `aiParseOrder`.
