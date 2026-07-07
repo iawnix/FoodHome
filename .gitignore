@@ -1,0 +1,47 @@
+# Local caches and generated state
+.dart_tool/
+.pub-cache/
+.gradle/
+.firebase/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+
+# Flutter and platform build outputs
+app/.dart_tool/
+app/build/
+app/android/.gradle/
+app/ios/Pods/
+app/ios/.symlinks/
+app/ios/Flutter/ephemeral/
+app/web/.dart_tool/
+
+# Node
+functions/node_modules/
+functions/lib/
+functions/coverage/
+
+# Firebase local state
+firebase-debug.log
+ui-debug.log
+*.local
+
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+**/google-services.json
+**/GoogleService-Info.plist
+**/firebase_options.dart
+**/key.properties
+**/*.jks
+**/*.keystore
+**/*.p8
+**/*.pem
+**/*.p12
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp

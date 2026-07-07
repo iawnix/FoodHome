@@ -1,0 +1,56 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function userDoc() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
+    function userHouseholdId() {
+      return userDoc().data.household_id;
+    }
+
+    function sameHousehold(householdId) {
+      return isSignedIn() && userHouseholdId() == householdId;
+    }
+
+    match /households/{householdId} {
+      allow read: if sameHousehold(householdId);
+      allow write: if false;
+    }
+
+    match /users/{userId} {
+      allow read: if isSignedIn() && request.auth.uid == userId;
+      allow write: if false;
+    }
+
+    match /dishes/{dishId} {
+      allow read: if sameHousehold(resource.data.household_id);
+      allow write: if false;
+    }
+
+    match /orders/{orderId} {
+      allow read: if sameHousehold(resource.data.household_id);
+      allow write: if false;
+    }
+
+    match /order_events/{eventId} {
+      allow read: if sameHousehold(resource.data.household_id);
+      allow write: if false;
+    }
+
+    match /preferences/{preferenceId} {
+      allow read: if isSignedIn() && request.auth.uid == preferenceId;
+      allow write: if false;
+    }
+
+    match /notifications/{notificationId} {
+      allow read: if isSignedIn() && resource.data.user_id == request.auth.uid;
+      allow write: if false;
+    }
+  }
+}

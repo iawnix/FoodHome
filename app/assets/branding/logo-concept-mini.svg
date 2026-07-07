@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+FoodHome - App icon (Minified for 60x60 rendering)
+Same concept as primary, but strips steam wisps so it stays readable at small sizes.
+Use this for tab bar / notification icon; use primary for launcher / store listing.
+-->
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" width="512" height="512">
+  <defs>
+    <linearGradient id="warmBgMini" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFEAD1"/>
+      <stop offset="1" stop-color="#F7B989"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="url(#warmBgMini)"/>
+
+  <!-- Roof line (heavier for small-size legibility) -->
+  <path
+    d="M96 258 L256 116 L416 258"
+    stroke="#3F2A1D"
+    stroke-width="28"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"/>
+
+  <!-- Bowl (fatter arc, no highlight) -->
+  <path d="M96 304 Q96 432 256 432 Q416 432 416 304 Z"
+    fill="#D9532A"/>
+</svg>

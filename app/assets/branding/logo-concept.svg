@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+FoodHome - App icon concept (Primary)
+Concept: a warm rounded square with "屋顶 + 蒸汽 + 碗" —— 一间家里正在开饭。
+- 屋顶线 represents "Home"
+- Steam wisps represent hot food
+- Bowl at the base grounds the "Food"
+Palette: 暖橙 -> 陶土, with 深棕 line work. Deliberately not flashy.
+Sizing: 512x512, safe zone 448x448 (roughly 12% margin for iOS/Android masking).
+-->
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" width="512" height="512">
+  <defs>
+    <linearGradient id="warmBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFEAD1"/>
+      <stop offset="1" stop-color="#F7B989"/>
+    </linearGradient>
+    <linearGradient id="bowlGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0723C"/>
+      <stop offset="1" stop-color="#C1421B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded app icon background -->
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="url(#warmBg)"/>
+
+  <!-- Roof line: represents 家 -->
+  <path
+    d="M112 236 L256 118 L400 236"
+    stroke="#3F2A1D"
+    stroke-width="20"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"/>
+
+  <!-- Steam wisps rising from bowl through the roof -->
+  <path d="M204 224 Q220 202 204 180 Q188 160 208 138"
+    stroke="#A87656" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <path d="M256 214 Q272 192 256 170 Q240 150 260 128"
+    stroke="#A87656" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <path d="M308 224 Q324 202 308 180 Q292 160 312 138"
+    stroke="#A87656" stroke-width="12" stroke-linecap="round" fill="none"/>
+
+  <!-- Bowl body -->
+  <path d="M104 292 Q104 416 256 416 Q408 416 408 292 Z"
+    fill="url(#bowlGrad)"/>
+
+  <!-- Bowl rim highlight -->
+  <ellipse cx="256" cy="292" rx="152" ry="20" fill="#FFB37A"/>
+</svg>

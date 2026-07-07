@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true,
+    "isolatedModules": true,
+    "moduleResolution": "node16",
+    "module": "Node16",
+    "target": "ES2022",
+    "types": ["node", "vitest/globals"],
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts", "__tests__/**/*.ts"]
+}
