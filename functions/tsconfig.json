@@ -9,8 +9,11 @@
     "moduleResolution": "node16",
     "module": "Node16",
     "target": "ES2022",
-    "types": ["node", "vitest/globals"],
-    "skipLibCheck": true
+    "types": ["node"],
+    "skipLibCheck": true,
+    "rootDir": "src",
+    "outDir": "lib",
+    "sourceMap": true
   },
-  "include": ["src/**/*.ts", "__tests__/**/*.ts"]
+  "include": ["src/**/*.ts"]
 }

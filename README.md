@@ -7,7 +7,8 @@ This repository starts the V0.0 slice from the product and technical plans:
 - Flutter app with local demo data.
 - Four main surfaces: tonight order, kitchen, family menu, settings.
 - Shared order state machine used by app tests and mirrored in Cloud Functions.
-- Firebase rules, indexes, and TypeScript function contracts prepared for V0.1.
+- Firebase emulator config, rules, indexes, and callable function wiring prepared
+  for V0.1.
 - No Firebase project files, API keys, signing keys, or local secrets are stored.
 
 Current repository: <https://github.com/iawnix/FoodHome>
@@ -28,6 +29,7 @@ scripts/      Local environment helpers
 scripts/doctor.sh
 cd app && flutter analyze && flutter test
 cd ../functions && npm test
+npm run build
 ```
 
 Validated on 2026-07-07:
@@ -38,8 +40,10 @@ Validated on 2026-07-07:
 - `flutter build web`
 - `npm test` in `functions/`
 
-The Flutter app currently uses in-memory demo state. Firebase write paths and AI
-provider keys are intentionally not configured in this repository.
+The Flutter app currently uses in-memory demo state. Cloud Functions now expose
+the V0.1 callable write paths against Firebase Admin SDK, but real Firebase
+project files, mobile app config, and AI provider keys are intentionally not
+stored in this repository.
 
 The Android debug APK is a local build artifact and is not tracked in Git. See
 `docs/build-artifacts.md` for the latest local artifact metadata and

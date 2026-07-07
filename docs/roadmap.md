@@ -10,7 +10,7 @@ V0.0 is implemented as a local Flutter prototype:
 - Family menu add/edit/favorite/block/delete operations.
 - Taste preference and excluded ingredient settings.
 - Cloud Functions TypeScript state machine, AI schemas, and sanitize tests.
-- Firebase rules and indexes drafted for V0.1.
+- Firebase emulator config, rules, indexes, and V0.1 callable wrappers drafted.
 
 ## Next Work
 
@@ -19,7 +19,7 @@ V0.0 is implemented as a local Flutter prototype:
 - Create a Firebase project outside the repository.
 - Add environment-specific Firebase config locally only.
 - Implement Anonymous Auth bootstrap.
-- Implement callable functions:
+- Smoke-test callable functions in Firebase emulator:
   - `createHousehold`
   - `joinHousehold`
   - `upsertDish`

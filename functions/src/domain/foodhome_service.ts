@@ -94,6 +94,10 @@ export interface FoodHomeStore {
     householdId: string,
     clientRequestId: string,
   ): Promise<OrderRecord | null>;
+  createOrder(
+    order: OrderRecord,
+    event: OrderEventRecord,
+  ): Promise<OrderRecord>;
   getOrder(orderId: string): Promise<OrderRecord | null>;
   saveOrder(order: OrderRecord): Promise<void>;
   appendOrderEvent(event: OrderEventRecord): Promise<void>;
@@ -292,14 +296,6 @@ export class FoodHomeService {
       return validationFailed(parsed.error);
     }
 
-    const existingOrder = await this.store.findOrderByClientRequest(
-      scope.data.household.id,
-      parsed.data.client_request_id,
-    );
-    if (existingOrder !== null) {
-      return ok({order_id: existingOrder.id});
-    }
-
     const dish =
       parsed.data.dish_id === undefined
         ? null
@@ -334,8 +330,7 @@ export class FoodHomeService {
       completedAt: null,
     };
 
-    await this.store.saveOrder(order);
-    await this.store.appendOrderEvent({
+    const savedOrder = await this.store.createOrder(order, {
       id: this.ids.event(),
       householdId: scope.data.household.id,
       orderId,
@@ -346,7 +341,7 @@ export class FoodHomeService {
       createdAt: now,
     });
 
-    return ok({order_id: orderId});
+    return ok({order_id: savedOrder.id});
   }
 
   async transitionOrderStatus(

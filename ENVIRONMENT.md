@@ -30,3 +30,18 @@ Do not commit:
 - Local `.env` files.
 
 Use Firebase Secret Manager for AI provider credentials once V0.2 begins.
+
+## Firebase Emulator
+
+The repository tracks `firebase.json` and `.firebaserc.example` only. Keep the
+real `.firebaserc` local.
+
+```bash
+cp .firebaserc.example .firebaserc
+cd functions && npm install && npm run build && cd ..
+npx firebase-tools emulators:start \
+  --project foodhome-local \
+  --only auth,firestore,functions,storage
+```
+
+The Functions build emits `functions/lib/`; it is ignored by Git.

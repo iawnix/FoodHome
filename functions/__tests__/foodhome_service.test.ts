@@ -92,6 +92,22 @@ class InMemoryFoodHomeStore implements FoodHomeStore {
     return null;
   }
 
+  async createOrder(
+    order: OrderRecord,
+    event: OrderEventRecord,
+  ): Promise<OrderRecord> {
+    const existingOrder = await this.findOrderByClientRequest(
+      order.householdId,
+      order.clientRequestId,
+    );
+    if (existingOrder !== null) {
+      return existingOrder;
+    }
+    await this.saveOrder(order);
+    await this.appendOrderEvent(event);
+    return order;
+  }
+
   async getOrder(orderId: string): Promise<OrderRecord | null> {
     return this.orders.get(orderId) ?? null;
   }

@@ -22,6 +22,7 @@ functions/lib/
 functions/coverage/
 
 # Firebase local state
+.firebaserc
 firebase-debug.log
 ui-debug.log
 *.local
