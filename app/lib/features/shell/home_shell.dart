@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:foodhome_app/core/demo/demo_household_controller.dart';
 import 'package:foodhome_app/core/theme/tokens.dart';
+import 'package:foodhome_app/features/household/presentation/controllers/household_controller.dart';
 import 'package:foodhome_app/features/kitchen/presentation/pages/kitchen_page.dart';
 import 'package:foodhome_app/features/menu/presentation/pages/menu_page.dart';
 import 'package:foodhome_app/features/settings/presentation/pages/settings_page.dart';
@@ -27,7 +27,7 @@ class _HomeShellState extends ConsumerState<HomeShell> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(demoHouseholdControllerProvider);
+    final state = ref.watch(householdControllerProvider);
     return Scaffold(
       appBar: AppBar(
         leading: Padding(

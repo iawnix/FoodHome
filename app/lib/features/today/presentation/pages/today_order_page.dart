@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:foodhome_app/core/demo/demo_household_controller.dart';
 import 'package:foodhome_app/core/theme/tokens.dart';
+import 'package:foodhome_app/features/household/presentation/controllers/household_controller.dart';
 import 'package:foodhome_app/shared/models/dish.dart';
 import 'package:foodhome_app/shared/widgets/section_header.dart';
 
@@ -26,7 +26,7 @@ class _TodayOrderPageState extends ConsumerState<TodayOrderPage> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(demoHouseholdControllerProvider);
+    final state = ref.watch(householdControllerProvider);
     final dishes = state.availableDishes;
     final selectedDish = _selectedDish(dishes);
     return ListView(
@@ -132,7 +132,7 @@ class _TodayOrderPageState extends ConsumerState<TodayOrderPage> {
   }
 
   void _submit(Dish? selectedDish) {
-    ref.read(demoHouseholdControllerProvider.notifier).submitOrder(
+    ref.read(householdControllerProvider.notifier).submitOrder(
           dishId: selectedDish?.id,
           rawText: _noteController.text,
           tasteNotes: _selectedTasteNotes.toList(),

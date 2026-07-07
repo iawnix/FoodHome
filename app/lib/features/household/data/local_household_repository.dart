@@ -1,5 +1,5 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:foodhome_app/core/demo/demo_household_state.dart';
+import 'package:foodhome_app/features/household/data/household_repository.dart';
+import 'package:foodhome_app/features/household/domain/household_state.dart';
 import 'package:foodhome_app/shared/models/dish.dart';
 import 'package:foodhome_app/shared/models/food_order.dart';
 import 'package:foodhome_app/shared/models/household_member.dart';
@@ -7,28 +7,24 @@ import 'package:foodhome_app/shared/models/order_state_machine.dart';
 import 'package:foodhome_app/shared/models/order_status.dart';
 import 'package:uuid/uuid.dart';
 
-final demoHouseholdControllerProvider =
-    NotifierProvider<DemoHouseholdController, DemoHouseholdState>(
-      DemoHouseholdController.new,
-    );
+final class LocalHouseholdRepository implements HouseholdRepository {
+  const LocalHouseholdRepository();
 
-class DemoHouseholdController extends Notifier<DemoHouseholdState> {
   static const _uuid = Uuid();
 
   @override
-  DemoHouseholdState build() => _seedState();
+  HouseholdState initialState() => _seedState();
 
-  void submitOrder({
-    required String? dishId,
-    required String rawText,
-    required List<String> tasteNotes,
-    required String? scheduledLabel,
-  }) {
-    final selectedDish = _findDish(dishId);
-    final dishName = selectedDish?.name ?? _fallbackDishName(rawText);
+  @override
+  HouseholdState submitOrder(
+    HouseholdState state,
+    SubmitOrderDraft draft,
+  ) {
+    final selectedDish = _findDish(state, draft.dishId);
+    final dishName = selectedDish?.name ?? _fallbackDishName(draft.rawText);
     final noteParts = [
-      ...tasteNotes,
-      rawText.trim(),
+      ...draft.tasteNotes,
+      draft.rawText.trim(),
       ...state.excludedIngredients.map((item) => '不要$item'),
     ].where((part) => part.isNotEmpty).toList();
 
@@ -38,60 +34,68 @@ class DemoHouseholdController extends Notifier<DemoHouseholdState> {
       dishName: dishName,
       requesterName: '小雨',
       status: OrderStatus.requested,
-      rawText: rawText.trim().isEmpty ? null : rawText.trim(),
+      rawText: draft.rawText.trim().isEmpty ? null : draft.rawText.trim(),
       note: noteParts.isEmpty ? null : noteParts.join(' · '),
-      scheduledLabel: scheduledLabel,
+      scheduledLabel: draft.scheduledLabel,
       createdAt: DateTime.now(),
     );
 
-    state = state.copyWith(orders: [order, ...state.orders]);
+    return state.copyWith(orders: [order, ...state.orders]);
   }
 
-  void transitionOrder({
-    required String orderId,
-    required OrderStatus targetStatus,
-  }) {
+  @override
+  HouseholdState transitionOrder(
+    HouseholdState state,
+    OrderTransitionCommand command,
+  ) {
     final updatedOrders = state.orders.map((order) {
-      if (order.id != orderId) {
+      if (order.id != command.orderId) {
         return order;
       }
-      if (!canTransitionOrder(from: order.status, to: targetStatus)) {
+      if (!canTransitionOrder(
+        from: order.status,
+        to: command.targetStatus,
+      )) {
         return order;
       }
       final now = DateTime.now();
       return order.copyWith(
-        status: targetStatus,
-        cookName: targetStatus == OrderStatus.accepted
+        status: command.targetStatus,
+        cookName: command.targetStatus == OrderStatus.accepted
             ? state.todayCookName
             : order.cookName,
-        completedAt: targetStatus.isTerminal ? now : order.completedAt,
+        completedAt: command.targetStatus.isTerminal
+            ? now
+            : order.completedAt,
       );
     }).toList();
 
-    state = state.copyWith(orders: updatedOrders);
+    return state.copyWith(orders: updatedOrders);
   }
 
-  void upsertDish({
-    required String name,
-    required String category,
-    required int estimatedMinutes,
-    required List<String> tags,
-    String? id,
-  }) {
-    final trimmedName = name.trim();
+  @override
+  HouseholdState upsertDish(
+    HouseholdState state,
+    DishFormInput input,
+  ) {
+    final trimmedName = input.name.trim();
     if (trimmedName.isEmpty) {
-      return;
+      return state;
     }
 
-    final existingIndex = state.dishes.indexWhere((dish) => dish.id == id);
+    final existingIndex = state.dishes.indexWhere(
+      (dish) => dish.id == input.id,
+    );
     final existingDish =
         existingIndex >= 0 ? state.dishes[existingIndex] : null;
     final dish = Dish(
-      id: id ?? _uuid.v4(),
+      id: input.id ?? _uuid.v4(),
       name: trimmedName,
-      category: category.trim().isEmpty ? 'home' : category.trim(),
-      estimatedMinutes: estimatedMinutes.clamp(5, 180),
-      tags: tags,
+      category: input.category.trim().isEmpty
+          ? 'home'
+          : input.category.trim(),
+      estimatedMinutes: input.estimatedMinutes.clamp(5, 180),
+      tags: input.tags,
       difficulty: existingDish?.difficulty ?? 'easy',
       isFavorite: existingDish?.isFavorite ?? false,
       isBlacklisted: existingDish?.isBlacklisted ?? false,
@@ -99,16 +103,16 @@ class DemoHouseholdController extends Notifier<DemoHouseholdState> {
     );
 
     if (existingIndex < 0) {
-      state = state.copyWith(dishes: [dish, ...state.dishes]);
-      return;
+      return state.copyWith(dishes: [dish, ...state.dishes]);
     }
 
     final dishes = [...state.dishes]..[existingIndex] = dish;
-    state = state.copyWith(dishes: dishes);
+    return state.copyWith(dishes: dishes);
   }
 
-  void toggleFavorite(String dishId) {
-    state = state.copyWith(
+  @override
+  HouseholdState toggleFavorite(HouseholdState state, String dishId) {
+    return state.copyWith(
       dishes: [
         for (final dish in state.dishes)
           if (dish.id == dishId)
@@ -119,8 +123,9 @@ class DemoHouseholdController extends Notifier<DemoHouseholdState> {
     );
   }
 
-  void toggleBlacklisted(String dishId) {
-    state = state.copyWith(
+  @override
+  HouseholdState toggleBlacklisted(HouseholdState state, String dishId) {
+    return state.copyWith(
       dishes: [
         for (final dish in state.dishes)
           if (dish.id == dishId)
@@ -131,46 +136,54 @@ class DemoHouseholdController extends Notifier<DemoHouseholdState> {
     );
   }
 
-  void removeDish(String dishId) {
-    state = state.copyWith(
+  @override
+  HouseholdState removeDish(HouseholdState state, String dishId) {
+    return state.copyWith(
       dishes: state.dishes.where((dish) => dish.id != dishId).toList(),
     );
   }
 
-  void addTasteNote(String value) {
+  @override
+  HouseholdState addTasteNote(HouseholdState state, String value) {
     final note = value.trim();
     if (note.isEmpty || state.tasteNotes.contains(note)) {
-      return;
+      return state;
     }
-    state = state.copyWith(tasteNotes: [...state.tasteNotes, note]);
+    return state.copyWith(tasteNotes: [...state.tasteNotes, note]);
   }
 
-  void removeTasteNote(String value) {
-    state = state.copyWith(
+  @override
+  HouseholdState removeTasteNote(HouseholdState state, String value) {
+    return state.copyWith(
       tasteNotes: state.tasteNotes.where((note) => note != value).toList(),
     );
   }
 
-  void addExcludedIngredient(String value) {
+  @override
+  HouseholdState addExcludedIngredient(HouseholdState state, String value) {
     final ingredient = value.trim();
     if (ingredient.isEmpty ||
         state.excludedIngredients.contains(ingredient)) {
-      return;
+      return state;
     }
-    state = state.copyWith(
+    return state.copyWith(
       excludedIngredients: [...state.excludedIngredients, ingredient],
     );
   }
 
-  void removeExcludedIngredient(String value) {
-    state = state.copyWith(
+  @override
+  HouseholdState removeExcludedIngredient(
+    HouseholdState state,
+    String value,
+  ) {
+    return state.copyWith(
       excludedIngredients: state.excludedIngredients
           .where((ingredient) => ingredient != value)
           .toList(),
     );
   }
 
-  Dish? _findDish(String? dishId) {
+  Dish? _findDish(HouseholdState state, String? dishId) {
     if (dishId == null) {
       return null;
     }
@@ -191,9 +204,9 @@ class DemoHouseholdController extends Notifier<DemoHouseholdState> {
   }
 }
 
-DemoHouseholdState _seedState() {
+HouseholdState _seedState() {
   final now = DateTime.now();
-  return DemoHouseholdState(
+  return HouseholdState(
     householdName: '我们家',
     inviteCode: '425816',
     todayCookName: '阿哲',

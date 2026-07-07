@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:foodhome_app/core/demo/demo_household_controller.dart';
 import 'package:foodhome_app/core/theme/tokens.dart';
+import 'package:foodhome_app/features/household/presentation/controllers/household_controller.dart';
 import 'package:foodhome_app/shared/widgets/section_header.dart';
 
 class SettingsPage extends ConsumerWidget {
@@ -9,7 +9,7 @@ class SettingsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(demoHouseholdControllerProvider);
+    final state = ref.watch(householdControllerProvider);
     return ListView(
       padding: const EdgeInsets.fromLTRB(
         AppSpacing.lg,
@@ -58,7 +58,7 @@ class SettingsPage extends ConsumerWidget {
               context: context,
               title: '添加口味',
               onSave: ref
-                  .read(demoHouseholdControllerProvider.notifier)
+                  .read(householdControllerProvider.notifier)
                   .addTasteNote,
             ),
             icon: const Icon(Icons.add),
@@ -72,7 +72,7 @@ class SettingsPage extends ConsumerWidget {
               InputChip(
                 label: Text(note),
                 onDeleted: () => ref
-                    .read(demoHouseholdControllerProvider.notifier)
+                    .read(householdControllerProvider.notifier)
                     .removeTasteNote(note),
               ),
           ],
@@ -85,7 +85,7 @@ class SettingsPage extends ConsumerWidget {
               context: context,
               title: '添加忌口',
               onSave: ref
-                  .read(demoHouseholdControllerProvider.notifier)
+                  .read(householdControllerProvider.notifier)
                   .addExcludedIngredient,
             ),
             icon: const Icon(Icons.add),
@@ -99,7 +99,7 @@ class SettingsPage extends ConsumerWidget {
               InputChip(
                 label: Text('不要$ingredient'),
                 onDeleted: () => ref
-                    .read(demoHouseholdControllerProvider.notifier)
+                    .read(householdControllerProvider.notifier)
                     .removeExcludedIngredient(ingredient),
               ),
           ],

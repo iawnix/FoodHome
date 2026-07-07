@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'demo_household_state.dart';
+part of 'household_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,20 +12,20 @@ part of 'demo_household_state.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$DemoHouseholdState {
+mixin _$HouseholdState {
 
  String get householdName; String get inviteCode; List<HouseholdMember> get members; List<Dish> get dishes; List<FoodOrder> get orders; List<String> get tasteNotes; List<String> get excludedIngredients; String get todayCookName;
-/// Create a copy of DemoHouseholdState
+/// Create a copy of HouseholdState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$DemoHouseholdStateCopyWith<DemoHouseholdState> get copyWith => _$DemoHouseholdStateCopyWithImpl<DemoHouseholdState>(this as DemoHouseholdState, _$identity);
+$HouseholdStateCopyWith<HouseholdState> get copyWith => _$HouseholdStateCopyWithImpl<HouseholdState>(this as HouseholdState, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DemoHouseholdState&&(identical(other.householdName, householdName) || other.householdName == householdName)&&(identical(other.inviteCode, inviteCode) || other.inviteCode == inviteCode)&&const DeepCollectionEquality().equals(other.members, members)&&const DeepCollectionEquality().equals(other.dishes, dishes)&&const DeepCollectionEquality().equals(other.orders, orders)&&const DeepCollectionEquality().equals(other.tasteNotes, tasteNotes)&&const DeepCollectionEquality().equals(other.excludedIngredients, excludedIngredients)&&(identical(other.todayCookName, todayCookName) || other.todayCookName == todayCookName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HouseholdState&&(identical(other.householdName, householdName) || other.householdName == householdName)&&(identical(other.inviteCode, inviteCode) || other.inviteCode == inviteCode)&&const DeepCollectionEquality().equals(other.members, members)&&const DeepCollectionEquality().equals(other.dishes, dishes)&&const DeepCollectionEquality().equals(other.orders, orders)&&const DeepCollectionEquality().equals(other.tasteNotes, tasteNotes)&&const DeepCollectionEquality().equals(other.excludedIngredients, excludedIngredients)&&(identical(other.todayCookName, todayCookName) || other.todayCookName == todayCookName));
 }
 
 
@@ -34,15 +34,15 @@ int get hashCode => Object.hash(runtimeType,householdName,inviteCode,const DeepC
 
 @override
 String toString() {
-  return 'DemoHouseholdState(householdName: $householdName, inviteCode: $inviteCode, members: $members, dishes: $dishes, orders: $orders, tasteNotes: $tasteNotes, excludedIngredients: $excludedIngredients, todayCookName: $todayCookName)';
+  return 'HouseholdState(householdName: $householdName, inviteCode: $inviteCode, members: $members, dishes: $dishes, orders: $orders, tasteNotes: $tasteNotes, excludedIngredients: $excludedIngredients, todayCookName: $todayCookName)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $DemoHouseholdStateCopyWith<$Res>  {
-  factory $DemoHouseholdStateCopyWith(DemoHouseholdState value, $Res Function(DemoHouseholdState) _then) = _$DemoHouseholdStateCopyWithImpl;
+abstract mixin class $HouseholdStateCopyWith<$Res>  {
+  factory $HouseholdStateCopyWith(HouseholdState value, $Res Function(HouseholdState) _then) = _$HouseholdStateCopyWithImpl;
 @useResult
 $Res call({
  String householdName, String inviteCode, List<HouseholdMember> members, List<Dish> dishes, List<FoodOrder> orders, List<String> tasteNotes, List<String> excludedIngredients, String todayCookName
@@ -53,14 +53,14 @@ $Res call({
 
 }
 /// @nodoc
-class _$DemoHouseholdStateCopyWithImpl<$Res>
-    implements $DemoHouseholdStateCopyWith<$Res> {
-  _$DemoHouseholdStateCopyWithImpl(this._self, this._then);
+class _$HouseholdStateCopyWithImpl<$Res>
+    implements $HouseholdStateCopyWith<$Res> {
+  _$HouseholdStateCopyWithImpl(this._self, this._then);
 
-  final DemoHouseholdState _self;
-  final $Res Function(DemoHouseholdState) _then;
+  final HouseholdState _self;
+  final $Res Function(HouseholdState) _then;
 
-/// Create a copy of DemoHouseholdState
+/// Create a copy of HouseholdState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? householdName = null,Object? inviteCode = null,Object? members = null,Object? dishes = null,Object? orders = null,Object? tasteNotes = null,Object? excludedIngredients = null,Object? todayCookName = null,}) {
   return _then(_self.copyWith(
@@ -79,8 +79,8 @@ as String,
 }
 
 
-/// Adds pattern-matching-related methods to [DemoHouseholdState].
-extension DemoHouseholdStatePatterns on DemoHouseholdState {
+/// Adds pattern-matching-related methods to [HouseholdState].
+extension HouseholdStatePatterns on HouseholdState {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -93,10 +93,10 @@ extension DemoHouseholdStatePatterns on DemoHouseholdState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _DemoHouseholdState value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _HouseholdState value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _DemoHouseholdState() when $default != null:
+case _HouseholdState() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -115,10 +115,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _DemoHouseholdState value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _HouseholdState value)  $default,){
 final _that = this;
 switch (_that) {
-case _DemoHouseholdState():
+case _HouseholdState():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -136,10 +136,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _DemoHouseholdState value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _HouseholdState value)?  $default,){
 final _that = this;
 switch (_that) {
-case _DemoHouseholdState() when $default != null:
+case _HouseholdState() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -159,7 +159,7 @@ return $default(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String householdName,  String inviteCode,  List<HouseholdMember> members,  List<Dish> dishes,  List<FoodOrder> orders,  List<String> tasteNotes,  List<String> excludedIngredients,  String todayCookName)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _DemoHouseholdState() when $default != null:
+case _HouseholdState() when $default != null:
 return $default(_that.householdName,_that.inviteCode,_that.members,_that.dishes,_that.orders,_that.tasteNotes,_that.excludedIngredients,_that.todayCookName);case _:
   return orElse();
 
@@ -180,7 +180,7 @@ return $default(_that.householdName,_that.inviteCode,_that.members,_that.dishes,
 
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String householdName,  String inviteCode,  List<HouseholdMember> members,  List<Dish> dishes,  List<FoodOrder> orders,  List<String> tasteNotes,  List<String> excludedIngredients,  String todayCookName)  $default,) {final _that = this;
 switch (_that) {
-case _DemoHouseholdState():
+case _HouseholdState():
 return $default(_that.householdName,_that.inviteCode,_that.members,_that.dishes,_that.orders,_that.tasteNotes,_that.excludedIngredients,_that.todayCookName);case _:
   throw StateError('Unexpected subclass');
 
@@ -200,7 +200,7 @@ return $default(_that.householdName,_that.inviteCode,_that.members,_that.dishes,
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String householdName,  String inviteCode,  List<HouseholdMember> members,  List<Dish> dishes,  List<FoodOrder> orders,  List<String> tasteNotes,  List<String> excludedIngredients,  String todayCookName)?  $default,) {final _that = this;
 switch (_that) {
-case _DemoHouseholdState() when $default != null:
+case _HouseholdState() when $default != null:
 return $default(_that.householdName,_that.inviteCode,_that.members,_that.dishes,_that.orders,_that.tasteNotes,_that.excludedIngredients,_that.todayCookName);case _:
   return null;
 
@@ -212,8 +212,8 @@ return $default(_that.householdName,_that.inviteCode,_that.members,_that.dishes,
 /// @nodoc
 
 
-class _DemoHouseholdState extends DemoHouseholdState {
-  const _DemoHouseholdState({required this.householdName, required this.inviteCode, required final  List<HouseholdMember> members, required final  List<Dish> dishes, required final  List<FoodOrder> orders, required final  List<String> tasteNotes, required final  List<String> excludedIngredients, required this.todayCookName}): _members = members,_dishes = dishes,_orders = orders,_tasteNotes = tasteNotes,_excludedIngredients = excludedIngredients,super._();
+class _HouseholdState extends HouseholdState {
+  const _HouseholdState({required this.householdName, required this.inviteCode, required final  List<HouseholdMember> members, required final  List<Dish> dishes, required final  List<FoodOrder> orders, required final  List<String> tasteNotes, required final  List<String> excludedIngredients, required this.todayCookName}): _members = members,_dishes = dishes,_orders = orders,_tasteNotes = tasteNotes,_excludedIngredients = excludedIngredients,super._();
 
 
 @override final  String householdName;
@@ -255,17 +255,17 @@ class _DemoHouseholdState extends DemoHouseholdState {
 
 @override final  String todayCookName;
 
-/// Create a copy of DemoHouseholdState
+/// Create a copy of HouseholdState
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$DemoHouseholdStateCopyWith<_DemoHouseholdState> get copyWith => __$DemoHouseholdStateCopyWithImpl<_DemoHouseholdState>(this, _$identity);
+_$HouseholdStateCopyWith<_HouseholdState> get copyWith => __$HouseholdStateCopyWithImpl<_HouseholdState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DemoHouseholdState&&(identical(other.householdName, householdName) || other.householdName == householdName)&&(identical(other.inviteCode, inviteCode) || other.inviteCode == inviteCode)&&const DeepCollectionEquality().equals(other._members, _members)&&const DeepCollectionEquality().equals(other._dishes, _dishes)&&const DeepCollectionEquality().equals(other._orders, _orders)&&const DeepCollectionEquality().equals(other._tasteNotes, _tasteNotes)&&const DeepCollectionEquality().equals(other._excludedIngredients, _excludedIngredients)&&(identical(other.todayCookName, todayCookName) || other.todayCookName == todayCookName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HouseholdState&&(identical(other.householdName, householdName) || other.householdName == householdName)&&(identical(other.inviteCode, inviteCode) || other.inviteCode == inviteCode)&&const DeepCollectionEquality().equals(other._members, _members)&&const DeepCollectionEquality().equals(other._dishes, _dishes)&&const DeepCollectionEquality().equals(other._orders, _orders)&&const DeepCollectionEquality().equals(other._tasteNotes, _tasteNotes)&&const DeepCollectionEquality().equals(other._excludedIngredients, _excludedIngredients)&&(identical(other.todayCookName, todayCookName) || other.todayCookName == todayCookName));
 }
 
 
@@ -274,15 +274,15 @@ int get hashCode => Object.hash(runtimeType,householdName,inviteCode,const DeepC
 
 @override
 String toString() {
-  return 'DemoHouseholdState(householdName: $householdName, inviteCode: $inviteCode, members: $members, dishes: $dishes, orders: $orders, tasteNotes: $tasteNotes, excludedIngredients: $excludedIngredients, todayCookName: $todayCookName)';
+  return 'HouseholdState(householdName: $householdName, inviteCode: $inviteCode, members: $members, dishes: $dishes, orders: $orders, tasteNotes: $tasteNotes, excludedIngredients: $excludedIngredients, todayCookName: $todayCookName)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$DemoHouseholdStateCopyWith<$Res> implements $DemoHouseholdStateCopyWith<$Res> {
-  factory _$DemoHouseholdStateCopyWith(_DemoHouseholdState value, $Res Function(_DemoHouseholdState) _then) = __$DemoHouseholdStateCopyWithImpl;
+abstract mixin class _$HouseholdStateCopyWith<$Res> implements $HouseholdStateCopyWith<$Res> {
+  factory _$HouseholdStateCopyWith(_HouseholdState value, $Res Function(_HouseholdState) _then) = __$HouseholdStateCopyWithImpl;
 @override @useResult
 $Res call({
  String householdName, String inviteCode, List<HouseholdMember> members, List<Dish> dishes, List<FoodOrder> orders, List<String> tasteNotes, List<String> excludedIngredients, String todayCookName
@@ -293,17 +293,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$DemoHouseholdStateCopyWithImpl<$Res>
-    implements _$DemoHouseholdStateCopyWith<$Res> {
-  __$DemoHouseholdStateCopyWithImpl(this._self, this._then);
+class __$HouseholdStateCopyWithImpl<$Res>
+    implements _$HouseholdStateCopyWith<$Res> {
+  __$HouseholdStateCopyWithImpl(this._self, this._then);
 
-  final _DemoHouseholdState _self;
-  final $Res Function(_DemoHouseholdState) _then;
+  final _HouseholdState _self;
+  final $Res Function(_HouseholdState) _then;
 
-/// Create a copy of DemoHouseholdState
+/// Create a copy of HouseholdState
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? householdName = null,Object? inviteCode = null,Object? members = null,Object? dishes = null,Object? orders = null,Object? tasteNotes = null,Object? excludedIngredients = null,Object? todayCookName = null,}) {
-  return _then(_DemoHouseholdState(
+  return _then(_HouseholdState(
 householdName: null == householdName ? _self.householdName : householdName // ignore: cast_nullable_to_non_nullable
 as String,inviteCode: null == inviteCode ? _self.inviteCode : inviteCode // ignore: cast_nullable_to_non_nullable
 as String,members: null == members ? _self._members : members // ignore: cast_nullable_to_non_nullable

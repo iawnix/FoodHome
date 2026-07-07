@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:foodhome_app/core/demo/demo_household_controller.dart';
 import 'package:foodhome_app/core/theme/tokens.dart';
+import 'package:foodhome_app/features/household/presentation/controllers/household_controller.dart';
 import 'package:foodhome_app/shared/models/dish.dart';
 import 'package:foodhome_app/shared/widgets/empty_state.dart';
 import 'package:foodhome_app/shared/widgets/section_header.dart';
@@ -11,7 +11,7 @@ class MenuPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(demoHouseholdControllerProvider);
+    final state = ref.watch(householdControllerProvider);
     final favoriteCount = state.dishes.where((dish) => dish.isFavorite).length;
     final blockedCount = state.dishes
         .where((dish) => dish.isBlacklisted)
@@ -58,7 +58,7 @@ class _DishTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.read(demoHouseholdControllerProvider.notifier);
+    final controller = ref.read(householdControllerProvider.notifier);
     return Card(
       margin: const EdgeInsets.only(bottom: AppSpacing.sm),
       child: ListTile(
@@ -160,7 +160,7 @@ Future<void> showDishSheet(
             FilledButton.icon(
               onPressed: () {
                 final minutes = int.tryParse(minutesController.text) ?? 20;
-                ref.read(demoHouseholdControllerProvider.notifier).upsertDish(
+                ref.read(householdControllerProvider.notifier).upsertDish(
                       id: dish?.id,
                       name: nameController.text,
                       category: categoryController.text,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:foodhome_app/core/demo/demo_household_controller.dart';
 import 'package:foodhome_app/core/theme/tokens.dart';
+import 'package:foodhome_app/features/household/presentation/controllers/household_controller.dart';
 import 'package:foodhome_app/shared/models/food_order.dart';
 import 'package:foodhome_app/shared/models/order_status.dart';
 import 'package:foodhome_app/shared/widgets/empty_state.dart';
@@ -13,7 +13,7 @@ class KitchenPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(demoHouseholdControllerProvider);
+    final state = ref.watch(householdControllerProvider);
     return ListView(
       padding: const EdgeInsets.fromLTRB(
         AppSpacing.lg,
@@ -88,7 +88,7 @@ class _KitchenOrderCard extends ConsumerWidget {
                 for (final action in _actionsFor(order.status))
                   FilledButton.tonalIcon(
                     onPressed: () => ref
-                        .read(demoHouseholdControllerProvider.notifier)
+                        .read(householdControllerProvider.notifier)
                         .transitionOrder(
                           orderId: order.id,
                           targetStatus: action.target,

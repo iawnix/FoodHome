@@ -3,11 +3,11 @@ import 'package:foodhome_app/shared/models/food_order.dart';
 import 'package:foodhome_app/shared/models/household_member.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'demo_household_state.freezed.dart';
+part 'household_state.freezed.dart';
 
 @freezed
-abstract class DemoHouseholdState with _$DemoHouseholdState {
-  const factory DemoHouseholdState({
+abstract class HouseholdState with _$HouseholdState {
+  const factory HouseholdState({
     required String householdName,
     required String inviteCode,
     required List<HouseholdMember> members,
@@ -16,9 +16,9 @@ abstract class DemoHouseholdState with _$DemoHouseholdState {
     required List<String> tasteNotes,
     required List<String> excludedIngredients,
     required String todayCookName,
-  }) = _DemoHouseholdState;
+  }) = _HouseholdState;
 
-  const DemoHouseholdState._();
+  const HouseholdState._();
 
   List<Dish> get availableDishes {
     return dishes.where((dish) => dish.isAvailable).toList();
